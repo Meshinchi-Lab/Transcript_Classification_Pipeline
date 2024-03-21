@@ -1,5 +1,5 @@
 # Transcript_Classification_Pipeline
-An end to end transcript classification pipeline for PacBio long read RNAseq data using PIGEON
+An end to end transcript classification pipeline for PacBio long read RNAseq data using [PIGEON](https://github.com/PacificBiosciences/pigeon)
 
 ### Purpose
 The purpose of this pipeline is to classify transcripts which have been generated via PacBio long read sequencing. 
