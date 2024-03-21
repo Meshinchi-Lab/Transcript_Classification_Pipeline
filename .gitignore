@@ -3,3 +3,11 @@
 # Lab Notebook
 
 # Logs
+
+# Auxillary shell scripts
+cavatica_file_download.sh
+
+# Auxillary Data
+raw_bams_download_links.txt
+mapping.txt
+manifest_2024031_134653.csv
