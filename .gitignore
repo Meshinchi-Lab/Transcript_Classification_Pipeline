@@ -1,8 +1,12 @@
 # Directories
+/slurmout/
 
 # Lab Notebook
+Notebook.md
 
 # Logs
+*.err
+*.log
 
 # Auxillary shell scripts
 cavatica_file_download.sh

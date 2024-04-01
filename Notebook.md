@@ -29,10 +29,20 @@ templates/: Contains all of the code which is executed in each individual step o
 Returned this error when trying to run git status
 _fatal: not a git repository (or any parent up to mount point /Volumes/fh/fast) Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)._
 
+Error - "Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue."
+Fix - Manually delete the index.lock file by running
 
+```rm -f .git/index.lock```
 
 ### Required inputs
 
 The inputs for this workflow are as follows - 
 1. Unaligned but CCS processed, BAM(s). Can be given as a manifest argument which points to a file hosting the filenames or as a filename argument. 
 2. References which will be used in the workflow; Should default to PacBio reference files and GRCh38 if the user does not provide them. 
+
+### Creating a docker container to run the process
+

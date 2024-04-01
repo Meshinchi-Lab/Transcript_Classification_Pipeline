@@ -5,10 +5,12 @@ nextflow.enable.dsl=2
 
 // All of the default parameters are being set in `nextflow.config`
 
+// Load Modules (Rhino / Gizmo Specific)
+ml Anaconda3/2023.09-0
+conda activate PacBio_LR
+
 // Import sub-workflows
-include { validate_manifest } from './modules/manifest'
-
-
+include { refine_bam } from './modules/refine_bam'
 
 // Function which prints help message text
 def helpMessage() {
@@ -40,7 +42,7 @@ Optional Arguments:
 workflow {
 
 
-    // Define the pattern which will be used to find the FASTQ files
+    // Define the pattern which will be used to find the BAM files
     bam_pattern = "${params.bam_folder}/*bam" 
 
     // Set up a channel from the bam files found with that pattern
@@ -51,7 +53,7 @@ workflow {
             [it.baseName, it]
         }
 
-    // Perform quality trimming on the input 
+    // Refine the BAM files
     refine_wf(
         bam_ch
     )
