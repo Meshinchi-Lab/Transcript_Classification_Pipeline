@@ -10,6 +10,7 @@ output_filename="${base%.*}_refined.bam"
 echo "Input Bam: $bam"
 echo "Primer Set: $primers"
 echo "Output Filename: $output_filename"
+echo "Output Directory: $output_dir"
 
 
 echo "Running IsoSeq Refine"

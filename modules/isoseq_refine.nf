@@ -8,9 +8,14 @@ process refine_bam {
     conda 'PacBio_LR'
     
     input:
-    tuple path(bam), path(primers)
+    tuple val(bam_filename) from bam_channel
+    path primer_fasta from params.primer_fasta
+    path output_directory from params.output_directory
 
     output:
+    file("${bam_filename}_refined.bam")
+
+    publishDir "${output_directory}/refined_bam", mode: 'copy'
 
     script:
     template 'isoseq_refine.sh'

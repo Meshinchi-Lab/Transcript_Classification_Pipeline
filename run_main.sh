@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Module Loading
+ml nextflow/23.04.0
+
 # Run the workflow on the test data, and write the output to output/
 nextflow \
     run \

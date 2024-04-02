@@ -6,7 +6,7 @@ nextflow.enable.dsl=2
 // All of the default parameters are being set in `nextflow.config`
 
 // Import sub-workflows
-include { refine_bam } from './modules/refine_bam'
+include { refine_bam } from './modules/isoseq_refine'
 
 // Function which prints help message text
 def helpMessage() {
@@ -29,6 +29,7 @@ Required Arguments:
 
 Optional Arguments:
 
+""".stripIndent()
 }
 
 
@@ -39,15 +40,16 @@ workflow {
     bam_pattern = "${params.bam_directory}/*bam" 
 
     // Set up a channel from the bam files found with that pattern
-    bam_ch = Channel
+    bam_channel = Channel
         .fromPath(bam_pattern)
         .ifEmpty { error "No files found matching the pattern ${bam_pattern}" }
         .map{
+            println("Reading BAM file: ${it.name}")
             [it.baseName, it]
         }
 
     // Refine the BAM files
-    refine_wf(
+    refine_bam(
         bam_ch
     )
 
