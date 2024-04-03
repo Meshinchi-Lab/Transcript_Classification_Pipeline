@@ -25,7 +25,7 @@ Required Arguments:
                              the sequencing run.
 
   Output Location:
-  --output_folder       Folder for output files
+  --output_directory       Directory for output files
 
 Optional Arguments:
 
@@ -36,21 +36,21 @@ Optional Arguments:
 // Main workflow
 workflow {
 
+    // CHECK
+    println(params.bam_directory)
+
     // Define the pattern which will be used to find the BAM files
-    bam_pattern = "${params.bam_directory}/*bam" 
+    bam_pattern = "${params.bam_directory}*bam" 
 
     // Set up a channel from the bam files found with that pattern
-    bam_channel = Channel
+    bam_ch = Channel
         .fromPath(bam_pattern)
         .ifEmpty { error "No files found matching the pattern ${bam_pattern}" }
-        .map{
-            println("Reading BAM file: ${it.name}")
-            [it.baseName, it]
-        }
+
+    // CHECK
+    // bam_ch.view()
 
     // Refine the BAM files
-    refine_bam(
-        bam_ch
-    )
+    refine_bam(bam_ch, params.primer_fasta, params.output_directory)
 
 }

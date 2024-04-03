@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 set -euo pipefail
 
 # Extract the basename and append the new suffix
@@ -10,8 +9,6 @@ output_filename="${base%.*}_refined.bam"
 echo "Input Bam: $bam"
 echo "Primer Set: $primers"
 echo "Output Filename: $output_filename"
-echo "Output Directory: $output_dir"
-
 
 echo "Running IsoSeq Refine"
 isoseq refine \

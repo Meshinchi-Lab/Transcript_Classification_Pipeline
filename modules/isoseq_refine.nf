@@ -8,16 +8,18 @@ process refine_bam {
     conda 'PacBio_LR'
     
     input:
-    tuple val(bam_filename) from bam_channel
-    path primer_fasta from params.primer_fasta
-    path output_directory from params.output_directory
+    file bam
+    path primers
+    path output_directory
 
     output:
-    file("${bam_filename}_refined.bam")
+    file("${bam.baseName}_refined.bam")
 
-    publishDir "${output_directory}/refined_bam", mode: 'copy'
+    //publishDir "${output_directory}/refined_bam", mode: 'copy'
 
     script:
-    template 'isoseq_refine.sh'
+    """
+    /fh/fast/meshinchi_s/workingDir/scripts/lwallac2/Workflows/Transcript_Classification_Pipeline/Transcript_Classification_Pipeline/templates/isoseq_refine.sh ${bam}
+    """
 
 }
