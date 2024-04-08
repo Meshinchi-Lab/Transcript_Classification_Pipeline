@@ -1,0 +1,9 @@
+name: TCP_Env
+channels:
+  - bioconda
+dependencies:
+  - bcftools=1.5
+  - isoseq3=4.0.0
+  - pbmm2=1.13.0
+  - samtools=1.5
+  - vcftols=0.1.16
