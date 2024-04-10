@@ -11,4 +11,4 @@ isoseq cluster2 \
     ${bam} \
     ${bam}.clustered.bam \
 
-echo "DONE"
+echo "Clustering complete for bam"

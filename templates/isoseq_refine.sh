@@ -2,18 +2,19 @@
 
 set -euo pipefail
 
-# Extract the basename and append the new suffix
-base=$(basename $bam)
-output_filename="${base%.*}_refined.bam"
-
-echo "Input Bam: $bam"
+# CHECKS
+if [[ -v CONDA_DEFAULT_ENV ]]; then
+    echo "Current Conda environment: \$CONDA_DEFAULT_ENV"
+else
+    echo "No Conda environment activated"
+fi
+echo " Refine Input Bam: $bam"
 echo "Primer Set: $primers"
-echo "Output Filename: $output_filename"
 
 echo "Running IsoSeq Refine"
 isoseq refine \
     ${bam} \
     ${primers} \
-    ${output_filename} \
+    ${bam}.refined.bam \
 
-echo "DONE"
+echo "Refinement complete for $bam"

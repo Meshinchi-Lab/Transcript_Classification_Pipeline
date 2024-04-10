@@ -30,6 +30,10 @@ Starting with HiFi reads which have been proccessed by ccs to consensus bams.
 
    [Classification Categories](https://isoseq.how/classification/categories) 
 
+### TODO
+
+1. Update to run using conda environment yaml such that anyone could build the environment from scratch and does not need access to my home directory. 
+
 ### Installation
 
 ### Usage

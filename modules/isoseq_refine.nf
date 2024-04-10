@@ -4,22 +4,17 @@
 nextflow.enable.dsl=2
 
 // Refine BAM with Isoseq inside conda environment
-process refine_bam {
-    conda 'PacBio_LR'
+process REFINE_BAM {
+    conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
     input:
-    file bam
+    path bam
     path primers
-    path output_directory
 
     output:
-    file("${bam.baseName}_refined.bam")
-
-    //publishDir "${output_directory}/refined_bam", mode: 'copy'
+    path("*.refined.bam")
 
     script:
-    """
-    /fh/fast/meshinchi_s/workingDir/scripts/lwallac2/Workflows/Transcript_Classification_Pipeline/Transcript_Classification_Pipeline/templates/isoseq_refine.sh ${bam}
-    """
+    template 'isoseq_refine.sh'
 
 }
