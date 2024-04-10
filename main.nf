@@ -40,22 +40,26 @@ include { COLLAPSE_BAM } from './modules/isoseq_collapse'
 include { PREPARE_GFF } from './modules/pigeon_prepare'
 include { CLASSIFY_GFF } from './modules/pigeon_classify'
 
+// Channel definition
+
+// Initial input BAM channel
+bam_pattern = "${params.bam_directory}*bam" 
+
+bam_ch = Channel
+    .fromPath(bam_pattern)
+    .ifEmpty { error "No files found matching the pattern ${bam_pattern}" }
+
+// Channels for collapse process
+// Set up a channel for the abundance files
+abundance_ch = Channel
+    .empty()
+        
+// Set up a channel for the GFF files
+gff_ch = Channel
+    .empty()
+
 // Main workflow
 workflow {
-
-    // CHECK
-    println(params.bam_directory)
-
-    // Define the pattern which will be used to find the BAM files
-    bam_pattern = "${params.bam_directory}*bam" 
-
-    // Set up a channel from the bam files found with that pattern
-    bam_ch = Channel
-        .fromPath(bam_pattern)
-        .ifEmpty { error "No files found matching the pattern ${bam_pattern}" }
-
-    // CHECK
-    // bam_ch.view()
 
     // Refine the BAM files
     REFINE_BAM(bam_ch, file(params.primer_fasta))
@@ -68,10 +72,16 @@ workflow {
 
     // Collapse the aligned BAM files
     COLLAPSE_BAM(ALIGN_BAM.out)
+    abundance = COLLAPSE_BAM.out[0]
+    gff = COLLAPSE_BAM.out[1]
+
+    // CHECK
+    abundance.view()
+    gff.view()
 
     // Prepare the collapsed BAM files for classification
-    PREPARE_GFF(COLLAPSE_BAM.out)
+    PREPARE_GFF(gff)
 
     // Classify the prepared GFF files
-    CLASSIFY_GFF(PREPARE_GFF.out, path(abundance), file(params.classification_reference_gtf), file(params.classification_reference_fasta))
+    CLASSIFY_GFF(PREPARE_GFF.out, abundance, file(params.classification_reference_gtf), file(params.classification_reference_fasta))
 }

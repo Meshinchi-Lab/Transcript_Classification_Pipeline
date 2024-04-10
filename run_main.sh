@@ -9,7 +9,7 @@ ml nextflow/23.04.0
 nextflow \
     run \
     main.nf \
-    --bam_directory /fh/scratch/delete90/meshinchi_s/lwallac2/KF_BAM_Operations/Unaligned_RNAseq/ \
+    --bam_directory /fh/scratch/delete90/meshinchi_s/lwallac2/KF_BAM_Operations/testDir/ \
     --primer_fasta /fh/fast/meshinchi_s/workingDir/scripts/lwallac2/Python/PacBio_LR_Initial_Investigation/IsoSeq_Primers_12_Barcodes_v1_barcodeset.fasta \
     --alignment_reference_fasta /fh/fast/meshinchi_s/workingDir/scripts/lwallac2/Python/PacBio_LR_Initial_Investigation/Pigeon_Run_1/human_GRCh38_no_alt_analysis_set.fasta \
     --classification_reference_gtf = "/Volumes/fh/fast/meshinchi_s/workingDir/scripts/Reference_Data/PacBio_References/gencode.v39.annotation.sorted.gtf" \

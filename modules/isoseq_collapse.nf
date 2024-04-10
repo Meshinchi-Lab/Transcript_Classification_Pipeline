@@ -11,6 +11,7 @@ process COLLAPSE_BAM {
     path bam
 
     output:
+    path("*.abundance.txt")
     path("*.collapsed.gff")
 
     script:
