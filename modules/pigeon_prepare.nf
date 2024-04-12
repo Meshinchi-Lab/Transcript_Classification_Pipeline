@@ -6,6 +6,8 @@ nextflow.enable.dsl=2
 // Cluster the BAM with Isoseq inside conda environment
 process PREPARE_GFF {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
+
+    tag "Prepare ${gff} for Pigeon"
     
     input:
     path gff

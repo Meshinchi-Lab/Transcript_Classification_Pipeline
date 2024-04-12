@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 process COLLAPSE_BAM {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
+    tag "Collapse ${bam} with Isoseq"
+
     input:
     path bam
 

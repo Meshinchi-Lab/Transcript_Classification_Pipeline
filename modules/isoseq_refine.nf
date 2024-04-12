@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 process REFINE_BAM {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
+    tag "Refine ${bam} with Isoseq"
+
     input:
     path bam
     path primers

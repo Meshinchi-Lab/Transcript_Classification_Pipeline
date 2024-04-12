@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 process CLASSIFY_GFF {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
+    tag "Classify ${gff} with PIGEON"
+
     input:
     path gff
     path abundance

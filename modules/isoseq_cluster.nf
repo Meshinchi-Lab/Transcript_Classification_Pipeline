@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 process CLUSTER_BAM {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
+    tag "Cluster ${bam} with Isoseq"
+
     input:
     path bam
 

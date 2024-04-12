@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 process ALIGN_BAM {
     conda '/home/lwallac2/.conda/envs/PacBio_LR'
     
+    tag "Aligning ${bam} with Isoseq"
+
     input:
     path bam
     path alignment_reference_fasta
