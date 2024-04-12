@@ -9,7 +9,7 @@ process ALIGN_BAM {
     
     input:
     path bam
-    path reference_fasta
+    path alignment_reference_fasta
 
     output:
     path("*.aligned.bam")

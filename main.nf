@@ -3,29 +3,45 @@
 // Using DSL-2
 nextflow.enable.dsl=2
 
-// Creeate message for process logs
+// Create message for process logs
 log.info """\
         PACBIO TRANSCRIPT CLASSIFICATION PIPELINE
         =========================================
+        Bam_Directory: ${params.bam_directory}
+        Output_Directory: ${params.output_directory}
         """ 
         .stripIndent()
-// All of the default parameters are being set in `nextflow.config`
 
 // Function which prints help message text
 def helpMessage() {
     log.info"""
+
 Usage:
 
-nextflow run FredHutch/workflow-template-nextflow <ARGUMENTS>
+nextflow run FredHutch/workflow-template-nextflow <ARGUMENTS> OR 
+
+sbatch run_main.sh <ARGUMENTS>
 
 Required Arguments:
 
   Input Data:
-  --bam_directory           A directory containing the BAM files to be refined. 
+  --bam_directory                   A directory containing the BAM files to be refined. All files ending 
+                                    in '.bam' in this location will be processed. 
 
   Reference Data:
-  --primer_fasta            Location of the fasta file containing the primer sequences used in 
-                             the sequencing run.
+  --primer_fasta                    Location of the fasta file containing the primer sequences used in 
+                                    the sequencing run.
+  
+  --classification_reference_gtf    Location of the GTF file containing the reference transcriptome
+                                    for classification.
+  
+  --classification_reference_fasta  Location of the fasta file containing the reference transcriptome
+
+  --alignment_reference_fasta       Location of the fasta file containing the reference genome for alignment
+
+Output Data:
+
+  --output_directory                The directory where the output files will be written. 
 
 Optional Arguments:
 
