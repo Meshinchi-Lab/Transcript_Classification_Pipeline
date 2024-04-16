@@ -8,6 +8,9 @@ log.info """\
         PACBIO TRANSCRIPT CLASSIFICATION PIPELINE
         =========================================
         Bam_Directory: ${params.bam_directory}
+        Primer_Fasta: ${params.primer_fasta}
+        Classification_Reference_GTF: ${params.classification_reference_gtf}
+        Classification_Reference_Fasta: ${params.classification_reference_fasta}
         Output_Directory: ${params.output_directory}
         """ 
         .stripIndent()
@@ -74,6 +77,8 @@ abundance_ch = Channel
 gff_ch = Channel
     .empty()
 
+
+
 // Main workflow
 workflow {
 
@@ -99,5 +104,6 @@ workflow {
     PREPARE_GFF(gff)
 
     // Classify the prepared GFF files
-    CLASSIFY_GFF(PREPARE_GFF.out, abundance, file(params.classification_reference_gtf), file(params.classification_reference_fasta))
+// Classify the prepared GFF files
+    CLASSIFY_GFF(PREPARE_GFF.out, abundance, file(params.classification_reference_gtf), file("${params.classification_reference_gtf}.pgi"), file(params.classification_reference_fasta), file("${params.classification_reference_fasta}.fai"))
 }

@@ -13,10 +13,14 @@ process CLASSIFY_GFF {
     path gff
     path abundance
     path gtf
+    path gtf_pgi
     path fasta
+    path fasta_fai
 
     output:
-    path("*.collapsed.sorted.gff")
+    path("*")
+
+    publishDir "${params.outdir}", mode: 'copy'
 
     script:
     template 'pigeon_classify.sh'

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # CHECKS
-echo "Preparing Input Bam $gff"
+echo "Preparing Input GFF $gff"
 
 # Run the collapse command
 echo "Running Pigeon Prepare"

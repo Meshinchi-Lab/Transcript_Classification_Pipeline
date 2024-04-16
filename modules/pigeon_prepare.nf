@@ -13,8 +13,7 @@ process PREPARE_GFF {
     path gff
 
     output:
-    path("*.collapsed.sorted.gff")
-
+    path("*gff")
     script:
     template 'pigeon_prepare.sh'
 
