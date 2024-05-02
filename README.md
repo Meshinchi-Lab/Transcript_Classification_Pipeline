@@ -8,6 +8,7 @@ The purpose of this pipeline is to classify transcripts which have been generate
 This pipeline is designed to run on the Fred Hutch HPC. It follows the reccomended workflow outlined in the Iso-Seq.how documentation [here](https://isoseq.how/classification/pigeon.html).
 
 STEPS
+
 Starting with HiFi reads which have been proccessed by ccs to consensus bams. 
 
 1. Refine
