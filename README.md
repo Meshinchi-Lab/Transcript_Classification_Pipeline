@@ -35,6 +35,4 @@ For a comprehensive walkthrough on running this pipeline, a tutorial can be foun
 
 ### TODO
 
-1. Update to run using conda environment yaml such that anyone could build the environment from scratch and does not need access to my home directory. 
-
-2. Apply formatting as described by nf-core best practices. 
+1. Apply formatting as described by nf-core best practices. 
