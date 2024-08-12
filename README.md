@@ -11,13 +11,13 @@ STEPS
 
 Starting with HiFi reads which have been proccessed by ccs to consensus bams. 
 
-1. Refine\n
+1. Refine\
    The refine command removes PolyA tails and performs rapid concatemer identification and removal.
 
-2. Cluster\n
+2. Cluster
    Clustering of transcripts identifies similar transcripts and groups them together. The output is a file with full-length non-concatemer reads clustered together with prediction accuracy >0.99.
    
-3. Align\n
+3. Align
    Reads are mapped to a reference using PBMM2 and sorted. 
    
 4. Collapse\n
