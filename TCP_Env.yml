@@ -6,4 +6,4 @@ dependencies:
   - isoseq3=4.0.0
   - pbmm2=1.13.0
   - samtools=1.5
-  - vcftols=0.1.16
+  - vcftools=0.1.16
